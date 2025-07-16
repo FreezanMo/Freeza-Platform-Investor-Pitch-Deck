@@ -3,947 +3,488 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Freeza™ Investor Pitch Deck</title>
+    <title>Freeza: Investor Pitch Deck</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        /* Custom styles for background images and specific elements not easily done with Tailwind */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #080a0e; /* Even darker base for depth */
-            color: #e0e6f1; /* Light text */
             scroll-behavior: smooth;
-            /* Futuristic animated background */
-            background-image: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.05) 0%, rgba(8, 10, 14, 0.9) 70%),
-                              linear-gradient(135deg, #0d1117 0%, #1a202c 100%);
-            background-size: 200% 200%;
-            animation: backgroundPan 30s linear infinite alternate;
-            padding-top: 5rem; /* Space for the fixed header */
+            background-color: #f0f7f7; /* Mild background color - very light blue-green */
         }
 
-        @keyframes backgroundPan {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 100% 100%; }
+        /* Section backgrounds with overlays for theme */
+        .section-bg-cover {
+            background-image: linear-gradient(rgba(45, 85, 120, 0.8), rgba(45, 85, 120, 0.8)), url('https://placehold.co/1600x600/4682B4/FFFFFF?text=College+Campus+Vibrant'); /* Mild blue tone for cover */
+            background-size: cover;
+            background-position: center;
         }
 
-        .fixed-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(13, 17, 23, 0.95); /* Darker, slightly transparent */
-            backdrop-filter: blur(8px); /* Glass effect */
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            padding: 1rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #2d3748;
+        .section-bg-mission-problem {
+            background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://placehold.co/1200x400/DDEEEF/555555?text=Students+Collaborating+Study'); /* Mild light blue-green */
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
         }
 
-        .section-container {
-            min-height: calc(100vh - 5rem); /* Adjust min-height for sections */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 4rem 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .section-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Subtle glowing effect */
-            background: radial-gradient(circle at center, rgba(168, 85, 247, 0.05) 0%, rgba(13, 17, 23, 0) 70%);
-            z-index: 0;
-            opacity: 0.8;
-        }
-        .content-card {
-            background-color: rgba(26, 32, 44, 0.85); /* Slightly more transparent */
-            border: 1px solid #2d3748; /* Subtle border */
-            border-radius: 1.5rem; /* More rounded */
-            padding: 2.5rem;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5), 0 0 30px rgba(99, 102, 241, 0.2); /* Enhanced shadow with glow */
-            max-width: 90%;
-            width: 100%;
-            z-index: 1;
-            position: relative;
-            backdrop-filter: blur(8px); /* Add blur for futuristic glass effect */
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #6366f1, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .nav-link {
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-            margin-bottom: 0.5rem;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #6366f1, #a855f7);
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-        .icon-wrapper {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #2d3748;
-            border-radius: 9999px;
-            padding: 0.75rem;
-            margin-right: 0.75rem;
-            min-width: 3rem;
-            min-height: 3rem;
-            box-shadow: 0 0 10px rgba(168, 85, 247, 0.3); /* Subtle icon glow */
-        }
-        .icon-wrapper svg {
-            width: 1.5rem;
-            height: 1.5rem;
-            color: #a855f7;
-        }
-        .chart-bar {
-            background-color: #6366f1;
-            height: 1.5rem;
-            border-radius: 0.5rem;
-            transition: width 0.5s ease-in-out;
-        }
-        .chart-label {
-            color: #cbd5e0;
-        }
-        .pie-slice {
-            border-radius: 50%;
-            position: absolute;
-            transform-origin: center;
-            background: conic-gradient(
-                #6366f1 0% 40%,
-                #a855f7 40% 70%,
-                #8b5cf6 70% 90%,
-                #c084fc 90% 100%
-            );
-        }
-        .team-member-card {
-            background-color: #2d3748;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-        .team-member-card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 1rem;
-            border: 2px solid #a855f7;
-        }
-        .roadmap-item {
-            background-color: #2d3748;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
-        .roadmap-item::before {
-            content: '';
-            position: absolute;
-            left: -1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1rem;
-            height: 1rem;
-            background-color: #a855f7;
-            border-radius: 50%;
-            border: 3px solid #6366f1;
-            z-index: 2;
-        }
-        .roadmap-line {
-            position: absolute;
-            left: -0.5rem;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: #4a5568;
-            z-index: 1;
-        }
-        .roadmap-container {
-            position: relative;
-            padding-left: 2rem;
-        }
-        .roadmap-container::before {
-            content: '';
-            position: absolute;
-            left: 1rem; /* Adjust to align with dots */
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: #4a5568;
+        .section-bg-solution-who {
+            background-image: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url('https://placehold.co/1200x400/EAF2F2/444444?text=Career+Pathways+Opportunities'); /* Mild light blue-green */
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
         }
 
-        /* Responsive adjustments */
-        @media (min-width: 768px) {
-            body {
-                padding-top: 0; /* No padding-top on body for desktop, sidebar handles it */
-            }
-            .fixed-header {
-                display: none; /* Hide fixed header on desktop, sidebar takes over */
-            }
-            .section-container {
-                padding: 4rem 2rem;
-                min-height: 100vh; /* Full viewport height on desktop */
-            }
-            .content-card {
-                padding: 3rem;
-            }
-            .nav-sidebar {
-                width: 250px; /* Fixed width for sidebar on larger screens */
-                position: fixed;
-                top: 0;
-                left: 0;
-                height: 100%;
-                background-color: #1a202c; /* Sidebar background */
-                padding: 2rem;
-                box-shadow: 4px 0 15px rgba(0, 0, 0, 0.4);
-            }
-            .main-content {
-                margin-left: 250px; /* Offset for sidebar */
-                padding-top: 0; /* No top padding for main content on desktop */
-            }
+        .section-bg-product-ai {
+            background-image: linear-gradient(rgba(245,250,250,0.95), rgba(245,250,250,0.95)), url('https://placehold.co/1200x400/D0E0E0/333333?text=Tech+Innovation+Workplace'); /* Mild light gray-blue */
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
         }
-        @media (max-width: 767px) {
-            .nav-sidebar {
-                position: fixed;
-                top: 5rem; /* Below the fixed header */
-                left: -100%; /* Hidden by default */
-                width: 70%;
-                height: calc(100% - 5rem); /* Full height minus header */
-                background-color: #1a202c;
-                z-index: 999; /* Below main fixed header */
-                transition: left 0.3s ease-in-out;
-                padding-top: 2rem; /* Internal padding */
-                overflow-y: auto;
+
+        .section-bg-business-traction {
+            background-image: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url('https://placehold.co/1200x400/EAF2F2/222222?text=Business+Growth+Analytics'); /* Mild light blue-green */
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+
+        .section-bg-trust-market {
+            background-image: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url('https://placehold.co/1200x400/D0E0E0/111111?text=Data+Security+Trust'); /* Mild light gray-blue */
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+
+        .section-bg-roadmap-team-ask {
+            background-image: linear-gradient(rgba(245,250,250,0.95), rgba(245,250,250,0.95)), url('https://placehold.co/1200x400/C0D0D0/000000?text=Future+Vision+Teamwork'); /* Mild light gray-blue */
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+
+        .section-bg-closing {
+            background-image: linear-gradient(rgba(45, 85, 120, 0.9), rgba(45, 85, 120, 0.9)), url('https://placehold.co/1600x600/4682B4/FFFFFF?text=Diverse+Professionals+Success'); /* Mild blue tone for closing */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Custom list item icons */
+        .list-item-check::before {
+            content: '✅';
+            margin-right: 0.5rem;
+            color: #28a745; /* Tailwind green-600 */
+        }
+        .list-item-cross::before {
+            content: '❌';
+            margin-right: 0.5rem;
+            color: #dc3545; /* Tailwind red-600 */
+        }
+        .list-item-sparkle::before {
+            content: '✨';
+            margin-right: 0.5rem;
+            color: #ffc107; /* Tailwind yellow-500 */
+        }
+        .list-item-rocket::before {
+            content: '🚀';
+            margin-right: 0.5rem;
+            color: #ff4500; /* Orange-red */
+        }
+        .list-item-warning::before {
+            content: '⚠️';
+            margin-right: 0.5rem;
+            color: #ffc107; /* Tailwind yellow-500 */
+        }
+
+        /* Table styling for competitive advantage */
+        .competitive-table th, .competitive-table td {
+            @apply px-4 py-3 text-left border border-gray-300;
+        }
+        .competitive-table th {
+            @apply bg-blue-700 text-white font-semibold; /* Slightly darker blue for headers */
+        }
+        .competitive-table tbody tr:nth-child(odd) {
+            @apply bg-white;
+        }
+        .competitive-table tbody tr:nth-child(even) {
+            @apply bg-gray-50;
+        }
+        .competitive-table .freeza-row {
+            @apply bg-blue-100 font-bold text-blue-800;
+        }
+
+        /* Responsive table */
+        @media (max-width: 768px) {
+            .competitive-table thead {
+                display: none; /* Hide table headers on small screens */
             }
-            .nav-sidebar.open {
-                left: 0;
+            .competitive-table, .competitive-table tbody, .competitive-table tr, .competitive-table td {
+                display: block; /* Make table elements stack */
+                width: 100%;
             }
-            .menu-button {
-                display: block;
+            .competitive-table tr {
+                @apply mb-4 border border-gray-300 rounded-lg shadow-sm;
+            }
+            .competitive-table td {
+                @apply text-right relative pl-32; /* Adjust padding for label */
+                border: none;
+                border-bottom: 1px solid #eee;
+            }
+            .competitive-table td:last-child {
+                border-bottom: none;
+            }
+            .competitive-table td::before {
+                content: attr(data-label); /* Use data-label for pseudo-element */
+                @apply absolute left-4 font-semibold text-gray-700;
+                width: 100px; /* Fixed width for labels */
+                text-align: left;
             }
         }
     </style>
 </head>
-<body class="text-gray-200">
+<body class="antialiased">
 
-    <!-- Fixed Top Header (for both mobile and desktop, hidden on desktop if sidebar is present) -->
-    <header id="mainHeader" class="fixed-header">
-        <div class="flex items-center space-x-3">
-            <img src="https://placehold.co/40x40/6366f1/ffffff?text=F" alt="Freeza Logo" class="rounded-full">
-            <h1 class="text-xl md:text-2xl font-extrabold gradient-text">Freeza™</h1>
-            <span class="hidden md:block text-sm text-gray-400 ml-4">Investor Pitch Deck</span>
+    <!-- Cover Section -->
+    <header class="section-bg-cover text-white text-center py-24 md:py-32 rounded-b-xl shadow-lg">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">Freeza: The Ultimate AI-Powered Talent, Learning & Hiring Platform</h1>
+            <p class="text-xl md:text-2xl mb-6 opacity-90">Where verified skills, AI-powered careers, and global opportunities converge.</p>
+            <p class="text-2xl md:text-3xl font-bold text-yellow-400">"Proof Over Paper."</p>
         </div>
-        <button id="menuButton" class="text-gray-200 focus:outline-none md:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-        </button>
     </header>
 
-    <!-- Navigation Sidebar -->
-    <nav id="navSidebar" class="nav-sidebar hidden md:block">
-        <div class="flex items-center space-x-3 mb-8 md:mb-12">
-            <img src="https://placehold.co/50x50/6366f1/ffffff?text=F" alt="Freeza Logo" class="rounded-full">
-            <h1 class="text-2xl font-extrabold gradient-text">Freeza™</h1>
+    <!-- Mission & Problem Section -->
+    <section class="section-bg-mission-problem py-16 md:py-24 px-4 rounded-xl shadow-md mt-8 mx-auto max-w-6xl">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-800 relative">
+                Our Mission
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <p class="text-lg md:text-xl text-gray-700 text-center max-w-3xl mx-auto mb-16">
+                Freeza empowers individuals from <strong class="text-blue-700">all academic and professional backgrounds</strong> with the tools to confidently build and advance their careers. We transform how skills are developed, verified, and hired using <strong class="text-blue-700">AI, real-world projects, and actionable guidance.</strong>
+            </p>
+
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-800 relative">
+                The Problem We're Solving
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">The current talent ecosystem is broken:</p>
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="list-item-cross text-lg text-gray-800">Traditional resumes lack verifiable proof. They're just paper.</li>
+                <li class="list-item-cross text-lg text-gray-800">Hiring is biased, inefficient, and often geographically restricted.</li>
+                <li class="list-item-cross text-lg text-gray-800">Colleges struggle to track real learning outcomes.</li>
+                <li class="list-item-cross text-lg text-gray-800">Coaching centers lack tech-enabled certification and promotion platforms.</li>
+                <li class="list-item-cross text-lg text-gray-800">Self-taught and non-traditional talent are often overlooked.</li>
+            </ul>
         </div>
-        <button id="closeMenuButton" class="absolute top-4 right-4 text-gray-400 md:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-        </button>
-        <ul class="space-y-2">
-            <!-- Removed cover link as it's now part of the fixed header -->
-            <li><a href="#vision" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">Our Vision</a></li>
-            <li><a href="#problem" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">The Problem</a></li>
-            <li><a href="#solution" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">The Solution</a></li>
-            <li><a href="#modules" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">Core Modules</a></li>
-            <li><a href="#features" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">AI Features</a></li>
-            <li><a href="#market" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">Market Opportunity</a></li>
-            <li><a href="#business-model" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">Business Model</a></li>
-            <li><a href="#go-to-market" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">Go-To-Market</a></li>
-            <li><a href="#status" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">Current Status</a></li>
-            <li><a href="#roadmap" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">Product Roadmap</a></li>
-            <li><a href="#expansion" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">Future Expansion</a></li>
-            <li><a href="#competitive" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">Competitive Advantage</a></li>
-            <li><a href="#funding" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">Funding Ask</a></li>
-            <li><a href="#revenue" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">Revenue Projections</a></li>
-            <li><a href="#team" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">Core Team</a></li>
-            <li><a href="#why-invest" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">Why Invest?</a></li>
-            <li><a href="#closing" class="nav-link text-lg font-medium text-gray-300 hover:text-purple-400">Closing</a></li>
-        </ul>
-    </nav>
+    </section>
 
-    <!-- Main Content Area -->
-    <main class="main-content">
-        <!-- The content of the original "Cover" slide is now part of the fixed header -->
+    <!-- Our Solution & Who Freeza Is For Section -->
+    <section class="section-bg-solution-who py-16 md:py-24 px-4 rounded-xl shadow-md mt-8 mx-auto max-w-6xl bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-800 relative">
+                Our Solution: Freeza
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">A comprehensive <strong class="text-blue-700">AI-first platform</strong> that's revolutionizing talent:</p>
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="list-item-check text-lg text-gray-800"><strong>Verifiable Skill Portfolios:</strong> Showcase what you can <em>actually do</em>.</li>
+                <li class="list-item-check text-lg text-gray-800"><strong>Smart Job Matching:</strong> Connects talent with the right opportunities across <strong class="text-blue-700">all fields</strong>.</li>
+                <li class="list-item-check text-lg text-gray-800"><strong>AI-Powered Career Mapping:</strong> Personalized guidance for career advancement.</li>
+                <li class="list-item-check text-lg text-gray-800"><strong>Web3-Backed Certification:</strong> Blockchain ensures authenticity and immutability of achievements.</li>
+                <li class="list-item-check text-lg text-gray-800"><strong>Role-Specific Dashboards:</strong> Tailored experiences for learners, colleges, recruiters, and coaching centers.</li>
+            </ul>
 
-        <!-- Slide 2: Our Vision (now the first content section) -->
-        <section id="vision" class="section-container bg-gray-900">
-            <div class="content-card text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8 gradient-text">Our Vision</h2>
-                <p class="text-xl md:text-3xl leading-relaxed text-gray-200 max-w-3xl mx-auto">
-                    Empowering individuals worldwide to unlock their full potential by showcasing verified talent, accessing opportunities, and driving global careers.
-                </p>
-                <div class="flex justify-center items-center mt-8 space-x-6">
-                    <div class="text-center">
-                        <div class="icon-wrapper mx-auto mb-2"><i data-lucide="unlock"></i></div>
-                        <span class="text-sm md:text-base text-gray-400">Unlock Potential</span>
-                    </div>
-                    <div class="text-center">
-                        <div class="icon-wrapper mx-auto mb-2"><i data-lucide="check-circle"></i></div>
-                        <span class="text-sm md:text-base text-gray-400">Verified Talent</span>
-                    </div>
-                    <div class="text-center">
-                        <div class="icon-wrapper mx-auto mb-2"><i data-lucide="briefcase"></i></div>
-                        <span class="text-sm md:text-base text-gray-400">Access Opportunities</span>
-                    </div>
-                    <div class="text-center">
-                        <div class="icon-wrapper mx-auto mb-2"><i data-lucide="globe"></i></div>
-                        <span class="text-sm md:text-base text-gray-400">Global Careers</span>
-                    </div>
-                </div>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 mt-16 text-blue-800 relative">
+                Who Freeza Is For: A Multi-Sided Platform
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">Freeza serves the entire talent lifecycle:</p>
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="list-item-check text-lg text-gray-800"><strong>Students & Freshers:</strong> From any academic stream.</li>
+                <li class="list-item-check text-lg text-gray-800"><strong>Self-Taught / Career Changers:</strong> Unlocking new opportunities.</li>
+                <li class="list-item-check text-lg text-gray-800"><strong>Colleges & Universities:</strong> Enhancing curriculum and placements.</li>
+                <li class="list-item-check text-lg text-gray-800"><strong>Coaching / Training Institutes:</strong> Modernizing certification and outreach.</li>
+                <li class="list-item-check text-lg text-gray-800"><strong>Companies / Recruiters:</strong> Across <strong class="text-blue-700">all industries</strong> for smarter hiring.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Product Features & Advanced AI Section -->
+    <section class="section-bg-product-ai py-16 md:py-24 px-4 rounded-xl shadow-md mt-8 mx-auto max-w-6xl">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-800 relative">
+                Product Features Overview
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <h3 class="text-2xl font-semibold text-blue-700 mb-6 text-center">For Talent:</h3>
+            <ul class="space-y-4 max-w-3xl mx-auto mb-12">
+                <li class="list-item-sparkle text-lg text-gray-800">AI Resumes & Portfolio Builder: Go beyond the CV.</li>
+                <li class="list-item-sparkle text-lg text-gray-800">Job Matching & Skill Assessments: Find your perfect fit.</li>
+                <li class="list-item-sparkle text-lg text-gray-800">Career Path Insights: Visualize your future.</li>
+                <li class="list-item-sparkle text-lg text-gray-800">Project Repository & AI Feedback: For developers and professionals to hone skills.</li>
+            </ul>
+            <h3 class="text-2xl font-semibold text-blue-700 mb-6 text-center">For Institutions & Recruiters:</h3>
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="list-item-sparkle text-lg text-gray-800">Colleges: Curriculum insights, dashboards, and placement tracking.</li>
+                <li class="list-item-sparkle text-lg text-gray-800">Coaching Centers: Course creation, blockchain certificates, and monetization tools.</li>
+                <li class="list-item-sparkle text-lg text-gray-800">Companies: Smart hiring dashboards, AI candidate shortlisting, and powerful analytics.</li>
+            </ul>
+
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 mt-16 text-blue-800 relative">
+                Advanced AI & Web3 Capabilities
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">Freeza is powered by cutting-edge technology:</p>
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="list-item-sparkle text-lg text-gray-800">AI Portfolio Visualizer: Dynamic representation of skills.</li>
+                <li class="list-item-sparkle text-lg text-gray-800">Gemini 2.0 Resume/Essay Writer: Intelligent content generation.</li>
+                <li class="list-item-sparkle text-lg text-gray-800">Predictive Career Mapper: Forecasts career paths and skill gaps.</li>
+                <li class="list-item-sparkle text-lg text-gray-800">Gamified Learning Engine: Engaging and effective skill development.</li>
+                <li class="list-item-sparkle text-lg text-gray-800">Explainable AI Scoring: Transparency in talent evaluation.</li>
+                <li class="list-item-sparkle text-lg text-gray-800">Blockchain/NFT-backed certificates: On Polygon/Solana for <strong class="text-blue-700">unquestionable authenticity</strong>.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Business Model & Traction Section -->
+    <section class="section-bg-business-traction py-16 md:py-24 px-4 rounded-xl shadow-md mt-8 mx-auto max-w-6xl bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-800 relative">
+                Business Model: Freemium + Premium Tiers
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">We offer scalable plans for every user:</p>
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="list-item-check text-lg text-gray-800"><strong>Students:</strong> Free basic tools; <strong class="text-blue-700">Pro with unlimited resumes, full portfolio</strong> ($X/month).</li>
+                <li class="list-item-check text-lg text-gray-800"><strong>Developers:</strong> Free project showcase; <strong class="text-blue-700">Pro unlocks private reviews and more.</strong></li>
+                <li class="list-item-check text-lg text-gray-800"><strong>Colleges:</strong> <strong class="text-blue-700">₹10,999/year per branch</strong> for full analytics and admin control.</li>
+                <li class="list-item-check text-lg text-gray-800"><strong>Coaching Centers:</strong> Monthly/Yearly plans with event and certification tools.</li>
+                <li class="list-item-check text-lg text-gray-800"><strong>Companies:</strong> Post 2 jobs free; <strong class="text-blue-700">unlock full hiring dashboard with Premium.</strong></li>
+            </ul>
+
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 mt-16 text-blue-800 relative">
+                Seamless Signup & Login Flow
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="list-item-check text-lg text-gray-800">Role-Based Dashboards: Tailored experiences for Student, Professional, College, Coaching, Company.</li>
+                <li class="list-item-check text-lg text-gray-800">SSO Integration: Google, LinkedIn, GitHub for convenience.</li>
+                <li class="list-item-check text-lg text-gray-800">Robust Security: JWT-secured login with Supabase + Row-Level Security.</li>
+                <li class="list-item-check text-lg text-gray-800">Custom Subdomains: For institutional clients, enhancing brand experience.</li>
+            </ul>
+
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 mt-16 text-blue-800 relative">
+                Traction & Go-To-Market
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <h3 class="text-2xl font-semibold text-blue-700 mb-6 text-center">Early Success:</h3>
+            <ul class="space-y-4 max-w-3xl mx-auto mb-12">
+                <li class="list-item-check text-lg text-gray-800"><strong class="text-blue-700">20+ colleges</strong> across India onboarded.</li>
+                <li class="list-item-check text-lg text-gray-800"><strong class="text-blue-700">5+ coaching partners</strong> secured.</li>
+                <li class="list-item-check text-lg text-gray-800"><strong class="text-blue-700">1,000+ student users</strong> already leveraging the platform.</li>
+            </ul>
+            <h3 class="text-2xl font-semibold text-blue-700 mb-6 text-center">GTM Strategy:</h3>
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="list-item-check text-lg text-gray-800">B2B2C Campaigns: Leveraging our college network for direct student access.</li>
+                <li class="list-item-check text-lg text-gray-800">Strategic Partnerships: Collaborating with leading EdTech & HR platforms.</li>
+                <li class="list-item-check text-lg text-gray-800">Targeted Ads: Reaching recruiters, coaching centers, and job seekers where they are.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Competitive Advantage Section -->
+    <section class="py-16 md:py-24 px-4 bg-blue-100 rounded-xl shadow-md mt-8 mx-auto max-w-6xl"> <!-- Changed to a milder blue -->
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-800 relative">
+                Competitive Advantage
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <p class="text-lg text-gray-700 mb-8 text-center max-w-3xl mx-auto">We stand out by truly delivering on <strong class="text-blue-700">"Proof Over Paper."</strong></p>
+            <div class="overflow-x-auto rounded-lg shadow-lg">
+                <table class="w-full competitive-table">
+                    <thead>
+                        <tr>
+                            <th>Platform</th>
+                            <th>AI-Powered Matching</th>
+                            <th>Web3 Credentials</th>
+                            <th>Multi-Domain Support</th>
+                            <th>Gamified Learning</th>
+                            <th>Focus on Verifiable Skills</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="freeza-row">
+                            <td data-label="Platform">Freeza</td>
+                            <td data-label="AI-Powered Matching">✅</td>
+                            <td data-label="Web3 Credentials">✅</td>
+                            <td data-label="Multi-Domain Support">✅</td>
+                            <td data-label="Gamified Learning">✅</td>
+                            <td data-label="Focus on Verifiable Skills">✅</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Platform">LinkedIn</td>
+                            <td data-label="AI-Powered Matching">✅</td>
+                            <td data-label="Web3 Credentials">❌</td>
+                            <td data-label="Multi-Domain Support">✅</td>
+                            <td data-label="Gamified Learning">❌</td>
+                            <td data-label="Focus on Verifiable Skills">❌</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Platform">Internshala</td>
+                            <td data-label="AI-Powered Matching">❌</td>
+                            <td data-label="Web3 Credentials">❌</td>
+                            <td data-label="Multi-Domain Support">⚠️ (Student-focused)</td>
+                            <td data-label="Gamified Learning">❌</td>
+                            <td data-label="Focus on Verifiable Skills">❌</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Platform">Coursera</td>
+                            <td data-label="AI-Powered Matching">⚠️</td>
+                            <td data-label="Web3 Credentials">❌</td>
+                            <td data-label="Multi-Domain Support">⚠️ (Course-focused)</td>
+                            <td data-label="Gamified Learning">⚠️</td>
+                            <td data-label="Focus on Verifiable Skills">❌</td>
+                        </tr>
+                         <tr>
+                            <td data-label="Platform">Naukri</td>
+                            <td data-label="AI-Powered Matching">✅</td>
+                            <td data-label="Web3 Credentials">❌</td>
+                            <td data-label="Multi-Domain Support">✅</td>
+                            <td data-label="Gamified Learning">❌</td>
+                            <td data-label="Focus on Verifiable Skills">❌</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Platform">Indeed</td>
+                            <td data-label="AI-Powered Matching">✅</td>
+                            <td data-label="Web3 Credentials">❌</td>
+                            <td data-label="Multi-Domain Support">✅</td>
+                            <td data-label="Gamified Learning">❌</td>
+                            <td data-label="Focus on Verifiable Skills">❌</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Slide 3: The Problem -->
-        <section id="problem" class="section-container bg-gray-800">
-            <div class="content-card">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8 text-red-400 text-center">The Problem <span class="text-gray-300">— Current Challenges</span></h2>
-                <ul class="space-y-4 text-lg md:text-xl text-gray-200">
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-red-600/20 mr-4"><i data-lucide="alert-triangle" class="text-red-400"></i></div>
-                        <span>No unified, trusted platform for verified digital portfolios.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-red-600/20 mr-4"><i data-lucide="x-circle" class="text-red-400"></i></div>
-                        <span>Recruiters struggle with fake resumes and irrelevant applications.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-red-600/20 mr-4"><i data-lucide="school" class="text-red-400"></i></div>
-                        <span>Colleges can’t effectively showcase student achievements or placements.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-red-600/20 mr-4"><i data-lucide="book-open" class="text-red-400"></i></div>
-                        <span>Coaching providers face difficulties in targeted outreach.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-red-600/20 mr-4"><i data-lucide="link-off" class="text-red-400"></i></div>
-                        <span>Fragmented systems for hiring, learning, and career discovery.</span>
-                    </li>
-                </ul>
+    <!-- Trust & Security, Monetization, Market Opportunity Section -->
+    <section class="section-bg-trust-market py-16 md:py-24 px-4 rounded-xl shadow-md mt-8 mx-auto max-w-6xl bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-800 relative">
+                Trust & Security
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">Your data and our platform's integrity are paramount:</p>
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="list-item-check text-lg text-gray-800">Supabase Auth + Row-Level Security: Gold standard for data protection.</li>
+                <li class="list-item-check text-lg text-gray-800">GDPR Compliant: Adhering to global data privacy standards.</li>
+                <li class="list-item-check text-lg text-gray-800">Bias-Audited AI Models: Ensuring fair and equitable outcomes.</li>
+                <li class="list-item-check text-lg text-gray-800">End-to-End Data Encryption: Protecting all user information.</li>
+                <li class="list-item-check text-lg text-gray-800">Institutional Access: Verified domains for secure client integration.</li>
+            </ul>
+
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 mt-16 text-blue-800 relative">
+                Monetization Strategy
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">Multiple revenue streams for sustainable growth:</p>
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="list-item-check text-lg text-gray-800">Subscriptions: From Students, Colleges, Coaching Centers, and Companies.</li>
+                <li class="list-item-check text-lg text-gray-800">Blockchain Credential Fees: For verifiable certifications.</li>
+                <li class="list-item-check text-lg text-gray-800">Featured Jobs & Portfolio Ads: Enhancing visibility for premium clients.</li>
+                <li class="list-item-check text-lg text-gray-800">Institutional Dashboards: Custom pricing for multi-department colleges.</li>
+                <li class="list-item-check text-lg text-gray-800">API Licensing: Integrating Freeza's power into other EdTech & LMS platforms.</li>
+            </ul>
+
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 mt-16 text-blue-800 relative">
+                Market Opportunity
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">The market is ripe for disruption:</p>
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="list-item-check text-lg text-gray-800"><strong>Total Addressable Market (TAM):</strong> <strong class="text-blue-700">$80B+</strong> (Global EdTech + HRTech).</li>
+                <li class="list-item-check text-lg text-gray-800"><strong>Serviceable Addressable Market (SAM):</strong> <strong class="text-blue-700">$9B</strong> (India + South-East Asia – our initial focus).</li>
+                <li class="list-item-check text-lg text-gray-800"><strong>Serviceable Obtainable Market (SOM):</strong> <strong class="text-blue-700">$300M</strong> in the first 3 years.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Roadmap, Team, Ask & Use of Funds Section -->
+    <section class="section-bg-roadmap-team-ask py-16 md:py-24 px-4 rounded-xl shadow-md mt-8 mx-auto max-w-6xl">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-blue-800 relative">
+                Roadmap
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <h3 class="text-2xl font-semibold text-blue-700 mb-6 text-center">2025 (Q3-Q4):</h3>
+            <ul class="space-y-4 max-w-3xl mx-auto mb-12">
+                <li class="list-item-rocket text-lg text-gray-800">Launch public beta.</li>
+                <li class="list-item-rocket text-lg text-gray-800">Onboard 100 colleges.</li>
+                <li class="list-item-rocket text-lg text-gray-800">Initiate paid marketing campaigns.</li>
+            </ul>
+            <h3 class="text-2xl font-semibold text-blue-700 mb-6 text-center">2026:</h3>
+            <ul class="space-y-4 max-w-3xl mx-auto mb-12">
+                <li class="list-item-rocket text-lg text-gray-800">Expand to MENA, APAC markets.</li>
+                <li class="list-item-rocket text-lg text-gray-800">Launch Freeza Hiring API for seamless integration.</li>
+            </ul>
+            <h3 class="text-2xl font-semibold text-blue-700 mb-6 text-center">2027:</h3>
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="list-item-rocket text-lg text-gray-800">Launch AI Career Advisor 2.0 with enhanced predictive capabilities.</li>
+                <li class="list-item-rocket text-lg text-gray-800">Expand to 5000+ institutions globally.</li>
+            </ul>
+
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 mt-16 text-blue-800 relative">
+                Our Exceptional Team
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <div class="text-center max-w-3xl mx-auto">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-4">Freezan Mo – Founder & CEO</h3>
+                <p class="text-lg text-gray-800 mb-4">12+ years of proven experience in global IT & SaaS sales, driving growth and innovation.</p>
+                <p class="text-lg text-gray-800 mb-4"><strong>Advisors:</strong> A powerful network of TalentTech & EdTech experts, leading AI engineers, and university deans.</p>
+                <p class="text-lg text-gray-800"><strong>Hiring:</strong> Actively seeking top-tier AI researchers, Business Development Managers, and Growth Leads to scale our vision.</p>
             </div>
-        </section>
 
-        <!-- Slide 4: The Solution — Freeza™ -->
-        <section id="solution" class="section-container bg-gray-900">
-            <div class="content-card">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8 gradient-text text-center">The Solution <span class="text-gray-300">— Freeza™</span></h2>
-                <p class="text-xl md:text-2xl leading-relaxed text-gray-200 mb-6 text-center">
-                    One Unified AI-Powered Platform for Talent Discovery, Hiring, and Learning
-                </p>
-                <ul class="space-y-4 text-lg md:text-xl text-gray-200">
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-green-600/20 mr-4"><i data-lucide="sparkles" class="text-green-400"></i></div>
-                        <span>AI-Verified Digital Talent Portfolios & Skill Maps.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-green-600/20 mr-4"><i data-lucide="layout-dashboard" class="text-green-400"></i></div>
-                        <span>College Dashboards for Placements & Student Showcases.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-green-600/20 mr-4"><i data-lucide="brain" class="text-green-400"></i></div>
-                        <span>AI-Powered Recruiter Tools for Precision Hiring.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-green-600/20 mr-4"><i data-lucide="award" class="text-green-400"></i></div>
-                        <span>Coaching Providers Delivering Verified Courses Linked to Talent Portfolios.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-green-600/20 mr-4"><i data-lucide="infinity" class="text-green-400"></i></div>
-                        <span>No Age or Stream Restrictions—Accessible Globally.</span>
-                    </li>
-                </ul>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 mt-16 text-blue-800 relative">
+                Our Ask & Use of Funds
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-600 rounded-full"></span>
+            </h2>
+            <h3 class="text-2xl font-semibold text-blue-700 mb-6 text-center">Seeking: <span class="text-green-600">$250K Seed Funding</span></h3>
+            <h3 class="text-2xl font-semibold text-blue-700 mb-6 text-center">Use of Funds Allocation:</h3>
+            <ul class="space-y-4 max-w-3xl mx-auto">
+                <li class="list-item-check text-lg text-gray-800">40% Tech Development: Fueling AI, Web3, and Mobile advancements.</li>
+                <li class="list-item-check text-lg text-gray-800">30% Growth & Marketing: Expanding our reach and user base.</li>
+                <li class="list-item-check text-lg text-gray-800">20% Talent Acquisition: Building a world-class team.</li>
+                <li class="list-item-check text-lg text-gray-800">10% Operational Reserves: Ensuring smooth and resilient operations.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Closing Section -->
+    <footer class="section-bg-closing text-white text-center py-24 md:py-32 rounded-t-xl shadow-lg mt-8">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-6 relative">
+                Freeza: One Platform. Infinite Possibilities.
+                <span class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-24 h-1 bg-yellow-400 rounded-full"></span>
+            </h2>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto">
+                We are building the future of careers, empowering the next billion learners and workers with verifiable skills that truly matter.
+            </p>
+            <p class="text-2xl md:text-3xl font-bold text-yellow-400 mb-12">
+                Let’s Build the Future of Careers – Together.
+            </p>
+
+            <div class="contact-info text-lg md:text-xl leading-relaxed">
+                <p class="font-semibold mb-2">Freezan Mo</p>
+                <p class="mb-2">Founder & CEO, Freeza</p>
+                <p class="mb-2">📧 <a href="mailto:freezan@freeza.pro" class="text-yellow-300 hover:underline">freezan@freeza.pro</a></p>
+                <p class="mb-2">🌐 <a href="http://www.freeza.pro" target="_blank" class="text-yellow-300 hover:underline">www.freeza.pro</a></p>
+                <p>🔗 <a href="https://www.linkedin.com/company/freeza" target="_blank" class="text-yellow-300 hover:underline">LinkedIn: Freeza Company Page</a></p>
             </div>
-        </section>
+        </div>
+    </footer>
 
-        <!-- Slide 5: Product Overview — Core Modules -->
-        <section id="modules" class="section-container bg-gray-800">
-            <div class="content-card text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-10 gradient-text">Product Overview <span class="text-gray-300">— Core Modules</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-gray-700/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <div class="icon-wrapper mx-auto mb-4"><i data-lucide="graduation-cap"></i></div>
-                        <h3 class="text-2xl font-bold mb-2 text-purple-200">Students/Professionals</h3>
-                        <p class="text-lg text-gray-100">Showcase Talent, Build Verified Portfolios, Get AI-Powered Career Paths.</p>
-                    </div>
-                    <div class="bg-gray-700/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <div class="icon-wrapper mx-auto mb-4"><i data-lucide="building-2"></i></div>
-                        <h3 class="text-2xl font-bold mb-2 text-purple-200">Colleges/Universities</h3>
-                        <p class="text-lg text-gray-100">Centralized Talent Dashboard, Placements, Institutional Analytics, Sponsored Events.</p>
-                    </div>
-                    <div class="bg-gray-700/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <div class="icon-wrapper mx-auto mb-4"><i data-lucide="briefcase-business"></i></div>
-                        <h3 class="text-2xl font-bold mb-2 text-purple-200">Recruiters/Companies</h3>
-                        <p class="text-lg text-gray-100">AI-Driven Hiring & Candidate Matching Tools, Job Listings, Instant Communication.</p>
-                    </div>
-                    <div class="bg-gray-700/50 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <div class="icon-wrapper mx-auto mb-4"><i data-lucide="book-check"></i></div>
-                        <h3 class="text-2xl font-bold mb-2 text-purple-200">Coaching/Course Providers</h3>
-                        <p class="text-lg text-gray-100">Verified Courses, Certifications, Events, and Talent Mapping Tools.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 6: AI-Powered Core Features -->
-        <section id="features" class="section-container bg-gray-900">
-            <div class="content-card">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8 gradient-text text-center">AI-Powered Core Features</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg md:text-xl">
-                    <div class="flex items-start p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                        <div class="icon-wrapper mr-4"><i data-lucide="map"></i></div>
-                        <span>AI Talent Mapping & Progress Forecasting.</span>
-                    </div>
-                    <div class="flex items-start p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                        <div class="icon-wrapper mr-4"><i data-lucide="scan-text"></i></div>
-                        <span>AI Project Analyzer & Originality Verifier.</span>
-                    </div>
-                    <div class="flex items-start p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                        <div class="icon-wrapper mr-4"><i data-lucide="file-text"></i></div>
-                        <span>AI Resume & Video Portfolio Generator.</span>
-                    </div>
-                    <div class="flex items-start p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                        <div class="icon-wrapper mr-4"><i data-lucide="route"></i></div>
-                        <span>AI Career Roadmap Recommendations.</span>
-                    </div>
-                    <div class="flex items-start p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                        <div class="icon-wrapper mr-4"><i data-lucide="user-check"></i></div>
-                        <span>Recruiter-Candidate Fit Score (AI-Powered).</span>
-                    </div>
-                    <div class="flex items-start p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                        <div class="icon-wrapper mr-4"><i data-lucide="send"></i></div>
-                        <span>Automated Personalized Job & Event Suggestions.</span>
-                    </div>
-                    <div class="flex items-start p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                        <div class="icon-wrapper mr-4"><i data-lucide="bar-chart-2"></i></div>
-                        <span>AI-Driven Institutional Analytics & Skill Gap Reports.</span>
-                    </div>
-                    <div class="flex items-start p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                        <div class="icon-wrapper mr-4"><i data-lucide="certificate"></i></div>
-                        <span>Auto-Certification Verifications.</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 7: Market Opportunity -->
-        <section id="market" class="section-container bg-gray-800">
-            <div class="content-card">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8 gradient-text text-center">Market Opportunity</h2>
-                <div class="mb-8">
-                    <h3 class="text-2xl font-semibold mb-4 text-purple-300">🌏 India + Global Focus:</h3>
-                    <ul class="space-y-2 text-lg md:text-xl text-gray-200">
-                        <li class="flex items-center"><div class="icon-wrapper mr-3 text-sm"><i data-lucide="trending-up"></i></div>EdTech Market (India): <span class="font-bold text-green-400">$10+ Billion (2027)</span></li>
-                        <li class="flex items-center"><div class="icon-wrapper mr-3 text-sm"><i data-lucide="globe"></i></div>Global Recruitment & EdTech Market: <span class="font-bold text-green-400">$500+ Billion by 2028</span></li>
-                        <li class="flex items-center"><div class="icon-wrapper mr-3 text-sm"><i data-lucide="sparkle"></i></div>Rising demand for AI-Verified, Digital-First Hiring & Upskilling Platforms.</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4 text-purple-300">Target Markets:</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-lg md:text-xl">
-                        <div class="flex items-center"><div class="icon-wrapper mr-3 text-sm"><i data-lucide="user-2"></i></div>50M+ College Students (India)</div>
-                        <div class="flex items-center"><div class="icon-wrapper mr-3 text-sm"><i data-lucide="users"></i></div>250M+ Global Professionals</div>
-                        <div class="flex items-center"><div class="icon-wrapper mr-3 text-sm"><i data-lucide="building"></i></div>45K+ Indian Colleges & Universities</div>
-                        <div class="flex items-center"><div class="icon-wrapper mr-3 text-sm"><i data-lucide="briefcase"></i></div>1M+ Global Recruiters/Companies</div>
-                        <div class="flex items-center"><div class="icon-wrapper mr-3 text-sm"><i data-lucide="book-text"></i></div>25K+ Coaching Providers Globally</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 8: Business Model -->
-        <section id="business-model" class="section-container bg-gray-900">
-            <div class="content-card">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8 gradient-text text-center">Business Model</h2>
-                <p class="text-xl md:text-2xl text-gray-200 mb-6 text-center">Freemium + Subscription + Ads + Events</p>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left table-auto border-collapse">
-                        <thead>
-                            <tr class="bg-gray-700/50">
-                                <th class="p-4 rounded-tl-lg">User Type</th>
-                                <th class="p-4">Monthly Premium Fee</th>
-                                <th class="p-4 rounded-tr-lg">Key Features Included</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b border-gray-700">
-                                <td class="p-4">Students/Professionals</td>
-                                <td class="p-4 font-semibold text-purple-300">₹199 (~$2.4 USD)</td>
-                                <td class="p-4">Full AI Tools, Unlimited Projects</td>
-                            </tr>
-                            <tr class="border-b border-gray-700">
-                                <td class="p-4">Colleges/Universities</td>
-                                <td class="p-4 font-semibold text-purple-300">₹11,999 (~$145 USD)</td>
-                                <td class="p-4">AI Dashboards, Talent Showcase, Ads</td>
-                            </tr>
-                            <tr class="border-b border-gray-700">
-                                <td class="p-4">Recruiters/Companies</td>
-                                <td class="p-4 font-semibold text-purple-300">₹1,499 (~$18 USD)</td>
-                                <td class="p-4">AI Hiring Tools, Sponsored Jobs</td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 rounded-bl-lg">Coaching/Course Providers</td>
-                                <td class="p-4 font-semibold text-purple-300">₹4,999 (~$60 USD)</td>
-                                <td class="p-4 rounded-br-lg">Unlimited Courses, Ads, Analytics</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="mt-8">
-                    <h3 class="text-2xl font-semibold mb-3 text-purple-300">Additional Revenue:</h3>
-                    <ul class="list-disc list-inside space-y-2 text-lg md:text-xl text-gray-200">
-                        <li>Sponsored Ads & Featured Listings</li>
-                        <li>Certification & Event Fees</li>
-                        <li>Annual Plans (15-20% Discount)</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 9: Go-To-Market Strategy -->
-        <section id="go-to-market" class="section-container bg-gray-800">
-            <div class="content-card">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8 gradient-text text-center">Go-To-Market Strategy</h2>
-                <div class="mb-8">
-                    <h3 class="text-2xl font-semibold mb-4 text-purple-300">Phase-Wise Approach:</h3>
-                    <ul class="space-y-3 text-lg md:text-xl text-gray-200">
-                        <li class="flex items-start"><div class="icon-wrapper mr-3 text-sm"><i data-lucide="map-pin"></i></div><span class="font-semibold text-purple-200">Phase 1 (India Focus):</span> Focus on Students, Colleges, Recruiters, Coaching Providers. Partner with Student Clubs, EdTech Forums, and Job Boards.</li>
-                        <li class="flex items-start"><div class="icon-wrapper mr-3 text-sm"><i data-lucide="plane"></i></div><span class="font-semibold text-purple-200">Phase 2 (South Asia & MENA Expansion):</span> Leverage India-based diaspora and educational connections. Expand language localization.</li>
-                        <li class="flex items-start"><div class="icon-wrapper mr-3 text-sm"><i data-lucide="earth"></i></div><span class="font-semibold text-purple-200">Phase 3 (Global Scaling):</span> Target US, Europe, Southeast Asia, with PayPal & Stripe for payments.</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4 text-purple-300">Key Channels:</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg md:text-xl">
-                        <div class="flex items-center"><div class="icon-wrapper mr-3 text-sm"><i data-lucide="megaphone"></i></div>Digital Campaigns (LinkedIn, Instagram, YouTube).</div>
-                        <div class="flex items-center"><div class="icon-wrapper mr-3 text-sm"><i data-lucide="handshake"></i></div>College Partnerships & Campus Ambassador Programs.</div>
-                        <div class="flex items-center"><div class="icon-wrapper mr-3 text-sm"><i data-lucide="network"></i></div>Recruiter Network Outreach.</div>
-                        <div class="flex items-center"><div class="icon-wrapper mr-3 text-sm"><i data-lucide="users-round"></i></div>Influencer & Content Collaborations.</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 10: Current Status -->
-        <section id="status" class="section-container bg-gray-900">
-            <div class="content-card">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8 gradient-text text-center">Current Status</h2>
-                <ul class="space-y-4 text-lg md:text-xl text-gray-200">
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-blue-600/20 mr-4"><i data-lucide="check-circle" class="text-blue-400"></i></div>
-                        <span>App Concept, Flow, Monetization Strategy Finalized.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-blue-600/20 mr-4"><i data-lucide="settings" class="text-blue-400"></i></div>
-                        <span>Tech Stack Identified; Razorpay & PayPal Payment Plans Ready.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-blue-600/20 mr-4"><i data-lucide="search" class="text-blue-400"></i></div>
-                        <span>Investor Discovery Underway.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-blue-600/20 mr-4"><i data-lucide="code" class="text-blue-400"></i></div>
-                        <span>MVP Development Planning Initiated.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-blue-600/20 mr-4"><i data-lucide="flag" class="text-blue-400"></i></div>
-                        <span>Beta Target: India + Select Global Markets in 6-9 Months.</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Slide 11: Product Roadmap -->
-        <section id="roadmap" class="section-container bg-gray-800">
-            <div class="content-card">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8 gradient-text text-center">Product Roadmap</h2>
-                <div class="roadmap-container relative">
-                    <div class="roadmap-line"></div>
-                    <div class="roadmap-item">
-                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Q3 2025</h3>
-                        <p class="text-gray-300">App Development, Razorpay/PayPal Integrations, AI Talent Map</p>
-                    </div>
-                    <div class="roadmap-item">
-                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Q4 2025</h3>
-                        <p class="text-gray-300">Recruiter Tools, College Dashboards, AI Resume Tools</p>
-                    </div>
-                    <div class="roadmap-item">
-                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Q1 2026</h3>
-                        <p class="text-gray-300">Beta Launch (India + Select Global Users) + Initial Monetization</p>
-                    </div>
-                    <div class="roadmap-item">
-                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Q2 2026</h3>
-                        <p class="text-gray-300">Full Launch in India + Southeast Asia Market Expansion</p>
-                    </div>
-                    <div class="roadmap-item">
-                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Q3 2026</h3>
-                        <p class="text-gray-300">Scale Global Partnerships & Cross-Border Payments</p>
-                    </div>
-                    <div class="roadmap-item">
-                        <h3 class="text-xl font-semibold text-purple-300 mb-2">2027+</h3>
-                        <p class="text-gray-300">Advanced Deep Learning Features, Blockchain Certifications, Global Expansion</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 12: Future Expansion Plans -->
-        <section id="expansion" class="section-container bg-gray-900">
-            <div class="content-card">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8 gradient-text text-center">Future Expansion Plans</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg md:text-xl">
-                    <div class="flex items-start p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                        <div class="icon-wrapper mr-4"><i data-lucide="users"></i></div>
-                        <span>AI-Based Mentorship & Community Forums.</span>
-                    </div>
-                    <div class="flex items-start p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                        <div class="icon-wrapper mr-4"><i data-lucide="trophy"></i></div>
-                        <span>Global Hackathons & Virtual Talent Fairs.</span>
-                    </div>
-                    <div class="flex items-start p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                        <div class="icon-wrapper mr-4"><i data-lucide="link"></i></div>
-                        <span>Blockchain-Verified Diplomas & Skill Credentials.</span>
-                    </div>
-                    <div class="flex items-start p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                        <div class="icon-wrapper mr-4"><i data-lucide="shopping-cart"></i></div>
-                        <span>Marketplace for Talent Sponsorship by Recruiters.</span>
-                    </div>
-                    <div class="flex items-start p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                        <div class="icon-wrapper mr-4"><i data-lucide="building-2"></i></div>
-                        <span>Enterprise & Government-Grade Hiring Solutions.</span>
-                    </div>
-                    <div class="flex items-start p-4 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors duration-200">
-                        <div class="icon-wrapper mr-4"><i data-lucide="message-square"></i></div>
-                        <span>AI-Powered Peer Learning Recommendations.</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 13: Competitive Advantage -->
-        <section id="competitive" class="section-container bg-gray-800">
-            <div class="content-card">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8 gradient-text text-center">Competitive Advantage</h2>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left table-auto border-collapse">
-                        <thead>
-                            <tr class="bg-gray-700/50">
-                                <th class="p-4 rounded-tl-lg">Feature</th>
-                                <th class="p-4">Freeza™</th>
-                                <th class="p-4">LinkedIn</th>
-                                <th class="p-4">Naukri</th>
-                                <th class="p-4 rounded-tr-lg">Coursera</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b border-gray-700">
-                                <td class="p-4">AI-Verified Talent Maps</td>
-                                <td class="p-4 text-green-400 font-bold">✅</td>
-                                <td class="p-4 text-red-400 font-bold">❌</td>
-                                <td class="p-4 text-red-400 font-bold">❌</td>
-                                <td class="p-4 text-red-400 font-bold">❌</td>
-                            </tr>
-                            <tr class="border-b border-gray-700">
-                                <td class="p-4">Integrated Hiring + Learning</td>
-                                <td class="p-4 text-green-400 font-bold">✅</td>
-                                <td class="p-4 text-yellow-400">Partial</td>
-                                <td class="p-4 text-red-400 font-bold">❌</td>
-                                <td class="p-4 text-yellow-400">Partial</td>
-                            </tr>
-                            <tr class="border-b border-gray-700">
-                                <td class="p-4">College/Recruiter Dashboards</td>
-                                <td class="p-4 text-green-400 font-bold">✅</td>
-                                <td class="p-4 text-red-400 font-bold">❌</td>
-                                <td class="p-4 text-red-400 font-bold">❌</td>
-                                <td class="p-4 text-yellow-400">Partial</td>
-                            </tr>
-                            <tr class="border-b border-gray-700">
-                                <td class="p-4">AI-Powered Project & Resume Tools</td>
-                                <td class="p-4 text-green-400 font-bold">✅</td>
-                                <td class="p-4 text-red-400 font-bold">❌</td>
-                                <td class="p-4 text-red-400 font-bold">❌</td>
-                                <td class="p-4 text-red-400 font-bold">❌</td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 rounded-bl-lg">Cross-Border Collaboration & Events</td>
-                                <td class="p-4 text-green-400 font-bold">✅</td>
-                                <td class="p-4 text-red-400 font-bold">❌</td>
-                                <td class="p-4 text-red-400 font-bold">❌</td>
-                                <td class="p-4 text-red-400 font-bold">❌</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 14: Funding Ask -->
-        <section id="funding" class="section-container bg-gray-900">
-            <div class="content-card text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8 gradient-text">Funding Ask</h2>
-                <p class="text-4xl md:text-6xl font-extrabold text-purple-400 mb-10">Seeking: $100,000 USD Seed Investment</p>
-
-                <h3 class="text-2xl font-semibold mb-4 text-purple-300">Planned Allocation:</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                    <div class="relative w-48 h-48 mx-auto">
-                        <div class="pie-slice w-full h-full"></div>
-                        <div class="absolute inset-0 flex items-center justify-center text-gray-100 text-lg font-bold">
-                            Allocation
-                        </div>
-                    </div>
-                    <ul class="text-left space-y-3 text-lg md:text-xl text-gray-200">
-                        <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-purple-600 mr-3"></span><span class="font-semibold">40%</span> Product Development & AI Tools</li>
-                        <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-purple-500 mr-3"></span><span class="font-semibold">30%</span> Marketing & Partnerships</li>
-                        <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-purple-400 mr-3"></span><span class="font-semibold">20%</span> Key Hires (Tech, Sales, Outreach Teams)</li>
-                        <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-purple-300 mr-3"></span><span class="font-semibold">10%</span> Legal, Compliance, & Reserve</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 15: Revenue Projections -->
-        <section id="revenue" class="section-container bg-gray-800">
-            <div class="content-card">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8 gradient-text text-center">Revenue Projections</h2>
-                <div class="grid grid-cols-1 gap-6">
-                    <div class="flex flex-col md:flex-row items-center justify-between p-4 bg-gray-700/50 rounded-lg">
-                        <span class="chart-label w-24 text-center md:text-left mb-2 md:mb-0">2026</span>
-                        <div class="chart-bar w-full md:w-3/4" style="width: 30%;"></div>
-                        <span class="ml-4 font-semibold text-purple-300">$350,000</span>
-                    </div>
-                    <div class="flex flex-col md:flex-row items-center justify-between p-4 bg-gray-700/50 rounded-lg">
-                        <span class="chart-label w-24 text-center md:text-left mb-2 md:mb-0">2027</span>
-                        <div class="chart-bar w-full md:w-3/4" style="width: 70%;"></div>
-                        <span class="ml-4 font-semibold text-purple-300">$1.25 Million</span>
-                    </div>
-                    <div class="flex flex-col md:flex-row items-center justify-between p-4 bg-gray-700/50 rounded-lg">
-                        <span class="chart-label w-24 text-center md:text-left mb-2 md:mb-0">2028</span>
-                        <div class="chart-bar w-full md:w-3/4" style="width: 100%;"></div>
-                        <span class="ml-4 font-semibold text-purple-300">$4.5 Million</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 16: Core Team & Hiring Plans -->
-        <section id="team" class="section-container bg-gray-900">
-            <div class="content-card text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8 gradient-text">Core Team & Hiring Plans</h2>
-                <div class="mb-10">
-                    <h3 class="text-2xl font-semibold mb-4 text-purple-300">👤 Founder:</h3>
-                    <div class="team-member-card inline-block p-6">
-                        <img src="https://placehold.co/100x100/a855f7/ffffff?text=FM" alt="Freezan Mo" class="mx-auto mb-3">
-                        <p class="text-xl font-semibold text-gray-100">Freezan Mo</p>
-                        <p class="text-gray-400">Vision, Product Strategy, AI Evangelist</p>
-                    </div>
-                </div>
-                <div class="mb-10">
-                    <h3 class="text-2xl font-semibold mb-4 text-purple-300">🔧 Initial Team:</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="team-member-card">
-                            <div class="icon-wrapper mx-auto mb-3"><i data-lucide="code"></i></div>
-                            <p class="font-semibold text-gray-100">Tech Team</p>
-                            <p class="text-gray-400">2 Developers (AI, Backend, Mobile)</p>
-                        </div>
-                        <div class="team-member-card">
-                            <div class="icon-wrapper mx-auto mb-3"><i data-lucide="users-round"></i></div>
-                            <p class="font-semibold text-gray-100">Outreach Team</p>
-                            <p class="text-gray-400">1 College & Recruiter Partnership Manager</p>
-                        </div>
-                        <div class="team-member-card">
-                            <div class="icon-wrapper mx-auto mb-3"><i data-lucide="headset"></i></div>
-                            <p class="font-semibold text-gray-100">Sales & Support Team</p>
-                            <p class="text-gray-400">1 Sales Executive + 1 Customer Support Specialist</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-semibold mb-4 text-purple-300">📈 Future Hires (Post-Funding):</h3>
-                    <ul class="list-disc list-inside space-y-2 text-lg md:text-xl text-gray-200 text-left">
-                        <li>AI & Data Science Lead (Advanced AI Capabilities)</li>
-                        <li>Marketing & Social Media Specialist</li>
-                        <li>Global Operations Manager (Phase 2)</li>
-                        <li>Business Development Manager (Recruiter Relations)</li>
-                        <li>Customer Success & Compliance Manager</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 17: Why Invest in Freeza™? -->
-        <section id="why-invest" class="section-container bg-gray-800">
-            <div class="content-card">
-                <h2 class="text-3xl md:text-5xl font-bold mb-8 gradient-text text-center">Why Invest in Freeza™?</h2>
-                <ul class="space-y-4 text-lg md:text-xl text-gray-200">
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-blue-600/20 mr-4"><i data-lucide="sparkles" class="text-blue-400"></i></div>
-                        <span>AI-Driven, First-Mover Talent Ecosystem.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-blue-600/20 mr-4"><i data-lucide="trending-up" class="text-blue-400"></i></div>
-                        <span>Growing Market Demand for Verified Talent Platforms.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-blue-600/20 mr-4"><i data-lucide="dollar-sign" class="text-blue-400"></i></div>
-                        <span>Recurring Revenue SaaS Model with High Scalability.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-blue-600/20 mr-4"><i data-lucide="layers" class="text-blue-400"></i></div>
-                        <span>Multi-Segment Monetization: Students, Colleges, Recruiters, Coaches.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-blue-600/20 mr-4"><i data-lucide="user-check" class="text-blue-400"></i></div>
-                        <span>Experienced Founder with Deep Understanding of EdTech + HRTech.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="icon-wrapper bg-blue-600/20 mr-4"><i data-lucide="globe" class="text-blue-400"></i></div>
-                        <span>Global Expansion Potential via AI-Powered Automation.</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Slide 18: Closing Slide -->
-        <section id="closing" class="section-container bg-gradient-to-br from-blue-900 to-gray-900 text-center">
-            <div class="content-card bg-gray-800 bg-opacity-70 backdrop-blur-sm p-8 md:p-12">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text leading-tight">Let’s Shape the Future of Talent Together</h2>
-                <p class="text-xl md:text-2xl leading-relaxed text-gray-200 mb-8 max-w-3xl mx-auto">
-                    Join Freeza™ in creating the world’s most trusted AI-Powered Talent Discovery & Hiring Platform.
-                </p>
-                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 text-lg md:text-xl">
-                    <p class="font-semibold text-purple-300">Founder: Freezan Mo</p>
-                    <p class="flex items-center"><i data-lucide="mail" class="mr-2 text-purple-400"></i><a href="mailto:freezan@freeza.pro" class="text-gray-200 hover:text-purple-400">freezan@freeza.pro</a></p>
-                    <p class="flex items-center"><i data-lucide="phone" class="mr-2 text-purple-400"></i><a href="tel:+918072401586" class="text-gray-200 hover:text-purple-400">+91 8072401586</a></p>
-                    <p class="flex items-center"><i data-lucide="globe" class="mr-2 text-purple-400"></i><a href="https://www.freeza.pro" target="_blank" class="text-gray-200 hover:text-purple-400">www.freeza.pro</a></p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    // Calculate offset for fixed header
-                    const headerOffset = document.getElementById('mainHeader').offsetHeight;
-                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - headerOffset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-                // Close sidebar on mobile after clicking a link
-                if (window.innerWidth < 768) {
-                    document.getElementById('navSidebar').classList.remove('open');
-                }
-            });
-        });
-
-        // Mobile menu toggle
-        const menuButton = document.getElementById('menuButton');
-        const closeMenuButton = document.getElementById('closeMenuButton');
-        const navSidebar = document.getElementById('navSidebar');
-
-        if (menuButton) {
-            menuButton.addEventListener('click', () => {
-                navSidebar.classList.add('open');
-            });
-        }
-        if (closeMenuButton) {
-            closeMenuButton.addEventListener('click', () => {
-                navSidebar.classList.remove('open');
-            });
-        }
-
-        // Highlight active navigation link on scroll
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${entry.target.id}`) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            });
-        }, {
-            // Adjust rootMargin to account for the fixed header height
-            rootMargin: '-100px 0px -50% 0px' // Example: -100px from top, -50% from bottom
-        });
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-
-        // Initial active link setup and scroll to top for a cleaner start
-        window.addEventListener('load', () => {
-            const currentHash = window.location.hash;
-            if (currentHash) {
-                const initialSection = document.querySelector(currentHash);
-                if (initialSection) {
-                    const headerOffset = document.getElementById('mainHeader').offsetHeight;
-                    const elementPosition = initialSection.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - headerOffset;
-                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                }
-            } else {
-                // If no hash, scroll to the top of the content area (after the header)
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-            // Set initial active class for the first content section
-            const firstContentNavLink = document.querySelector('.nav-link[href="#vision"]');
-            if (firstContentNavLink) {
-                firstContentNavLink.classList.add('active');
-            }
-        });
-
-    </script>
 </body>
 </html>
